@@ -64,7 +64,7 @@ with open(sys.argv[1], 'r') as csvfile:
         if '/' in symbol:
             prefix = ' opt '
         else:
-            prefix = ' sh '
+            prefix = ' '
         if float(count) < 0:
             prefix = ' short' + prefix
             count = count[1:]
