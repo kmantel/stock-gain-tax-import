@@ -39,10 +39,19 @@ print('Aself')
 print('D', datetime.date.today().strftime('%m/%d/%y'))
 print('^')
 
+row_num = 0
+
 with open(sys.argv[1], 'r') as csvfile:
     for row in csv.reader(csvfile):
         symbol = row[0]
         count = row[1]
+
+        try:
+            float(count)
+        except ValueError:
+            assert row_num == 0, f'non-numeric Count in non-header row {row_num}'
+            continue
+
         acquired = row[2]
         disposed = row[3]
         proceeds = row[4]
@@ -90,3 +99,4 @@ with open(sys.argv[1], 'r') as csvfile:
             print('$' + wash_sale_loss)
         print('^')
 
+        row_num += 1
